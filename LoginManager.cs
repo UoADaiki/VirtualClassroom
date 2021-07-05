@@ -16,8 +16,8 @@ public class LoginManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartMenu();
         isTeacher = true;
+        StartMenu();
     }
 
     // Update is called once per frame
