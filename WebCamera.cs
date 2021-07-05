@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿/*
+This program is used for User's camera.
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
