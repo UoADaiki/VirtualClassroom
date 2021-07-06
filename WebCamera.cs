@@ -39,4 +39,16 @@ public class WebCamera : MonoBehaviour
         }
         
     }
+
+    // The process when Camera ON/OFF button is pushed
+    public void OnOffCamera(){
+        if(webCamTexture.isPlaying == false){  // if your camera is off,
+                cube.GetComponent<MeshRenderer>().material.mainTexture = webCamTexture;
+                webCamTexture.Play();   // turn on your camera.
+        }
+        else{                       // if your camera is on,
+                cube.GetComponent<MeshRenderer>().material.mainTexture = offCamera;
+                webCamTexture.Stop();   // turn off your camera.
+        }
+    }
 }
