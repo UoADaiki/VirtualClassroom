@@ -6,12 +6,19 @@ using Photon.Realtime;
 
 public class AvatarController : MonoBehaviourPunCallbacks
 {
+    ///// About Avatar Moving /////
     public float speed;
+
+    ///// About User Camera /////
+    [SerializeField] Camera userCamera;
+    
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(photonView.IsMine == true){
+            userCamera.depth += 1;
+        }
     }
 
     // Update is called once per frame
@@ -35,4 +42,5 @@ public class AvatarController : MonoBehaviourPunCallbacks
 		    }
         }   
     }
+
 }

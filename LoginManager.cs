@@ -11,26 +11,29 @@ using Photon.Realtime;
 
 public class LoginManager : MonoBehaviourPunCallbacks
 {
-    ///// For UserNameSetPanel /////
+    [Header("For UserNameSetPanel")]
     [SerializeField] GameObject userNameSetPanel;
     [SerializeField] private InputField userName;
     [SerializeField] private List<Toggle> toggles;  
     private bool isTeacher = true;
 
-    ///// For SelectWayPanel /////
+    [Header("For SelectWayPanel")]
     [SerializeField] GameObject selectWayPanel;
 
 
-    ///// For CreateRoomPanel /////
+    [Header("For CreateRoomPanel")]
     [SerializeField] GameObject createRoomPanel;
     [SerializeField] private InputField createRoomCode;
 
-    ///// For JoinRoomPanel /////
+    [Header("For JoinRoomPanel")]
     [SerializeField] GameObject joinRoomPanel;
     [SerializeField] private InputField joinRoomCode;
 
-    ///// For LogoutButton /////
-    [SerializeField] GameObject logoutButton;
+    [Header("For Mainmenu")]
+    [SerializeField] GameObject menuButtons;
+    [SerializeField] GameObject cameraButton;
+    [SerializeField] GameObject shareImageFunction;
+    [SerializeField] GameObject voiceNoteFunction;
 
 
     // Start is called before the first frame update
@@ -107,7 +110,14 @@ public class LoginManager : MonoBehaviourPunCallbacks
         else if(joinRoomPanel.activeSelf == true){
             joinRoomPanel.SetActive(false);
         }
-        logoutButton.SetActive(true);
+        menuButtons.SetActive(true);
+        if(isTeacher == true){
+            cameraButton.SetActive(true);
+            shareImageFunction.SetActive(true);
+        }
+        else{
+            voiceNoteFunction.SetActive(true);
+        }
     }
 
     void OnPhotonJoinRoomFailed() {
@@ -173,6 +183,25 @@ public class LoginManager : MonoBehaviourPunCallbacks
     // When the user leave the room
     public override void OnLeftRoom() {
         Debug.Log("Left the room");
-        logoutButton.SetActive(false);
+        if(menuButtons != null){
+            menuButtons.SetActive(false);      
+            if(isTeacher == true){
+                cameraButton.SetActive(false);
+                shareImageFunction.SetActive(false);
+            }
+            else{
+                voiceNoteFunction.SetActive(false);
+            }
+        }
     }
+/*
+    public bool isTeacherStatus(){
+        if(isTeacher == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+*/
 }
